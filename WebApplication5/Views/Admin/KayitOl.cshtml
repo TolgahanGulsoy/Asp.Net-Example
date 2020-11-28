@@ -1,0 +1,140 @@
+﻿
+@{
+    var control = (ViewBag.Basarili as string)??"";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+.center {
+    margin: auto;
+    width: 60%;
+    text-align: center;
+    padding: 10px;
+}
+
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+}
+
+button:hover {
+  opacity:1;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  padding: 14px 20px;
+  background-color: #f44336;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn {
+  float: left;
+  width: 50%;
+}
+
+/* Add padding to container elements */
+.container {
+  padding: 16px;
+}
+
+/* Clear floats */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+/* Change styles for cancel button and signup button on extra small screens */
+media screen and (max-width: 300px) {
+  .cancelbtn, .signupbtn {
+     width: 100%;
+  }
+}
+</style>
+<body>
+
+
+    <form action="/Admin/KayitOl" method="post">
+
+       
+        <div class="container center" style="width:40%">
+            <h1>Kayıt Ol</h1>
+            <p>Lütfen kayıt olmak için aşağıdaki bilgileri doldurun.</p>
+            <div style="background-color:#4CAF50; color:white; padding-top:5px; height:30px">
+                @if (ViewBag.Basarili != null)
+                {
+                    <div class="alert-danger">
+                        @ViewBag.Basarili
+                    </div>
+                }
+
+            </div>
+            
+            <hr>
+            <div style="border-style:solid; padding:10px">
+                <label for="Name"><b>Ad Soyad</b></label>
+                <input type="text" placeholder="Ad Soyad" name="CUSTOMERNAME" required>
+
+                <label for="Age"><b>Yaş</b></label>
+                <input type="text" placeholder="Yaş" name="AGE" required>
+
+                <label for="Gender"><b>Cinsiyet</b></label>
+                <input type="text" placeholder="Cinsiyet" name="GENDER" required>
+
+                <label for="email"><b>Email</b></label>
+                <input type="text" placeholder="Mail Adresi" name="EMAIL" required>
+
+                <label for="psw"><b>Şifre</b></label>
+                <input type="password" placeholder="Şifre" name="PASSWORD" required>
+
+                <label for="psw-repeat"><b>Şifre Tekrarı</b></label>
+                <input type="password" placeholder="Şifre Tekrarı" name="pswrepeat" required>
+
+            </div>
+            <p>Kayıt olarak kullanım şartlarınızı kabul ediyorsunuz. <a href="#" style="color:dodgerblue">Gizlilik & Kurallar</a>.</p>
+
+            <div class="clearfix">
+                <button type="button" class="cancelbtn">
+                    <a href="/Admin/Index" style="color:white" class="btn btn-success">Geri</a>
+                </button>
+                <button type="submit" class="signupbtn"><u>Kayıt ol</u></button>
+            </div>
+        </div>
+
+    </form>
+
+</body>
+</html>

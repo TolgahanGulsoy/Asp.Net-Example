@@ -1,0 +1,127 @@
+﻿@model List<WebApplication5.Models.CUSTOMERS>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Kullanici";
+}
+@if (ViewBag.Sonuc != null)
+{
+    <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+        <h5><i class="icon fa fa-check"></i>@ViewBag.Sonuc</h5>
+
+    </div>
+}
+<div class="row mb-2">
+    <div class="col-sm-6">
+        <h1 class="m-0 text-dark">Kullanıcılar</h1>
+    </div><!-- /.col -->
+    <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item"><a href="#">Tablolar</a></li>
+            <li class="breadcrumb-item active">Kullanıcılar Tablosu</li>
+        </ol>
+    </div><!-- /.col -->
+
+</div><!-- /.row -->
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="btn btn-outline-dark" data-toggle="modal" data-target="#kullaniciEkleModal">Kullanıcı Ekle </div>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body table-responsive p-0">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Ad</th>
+                            <th>Yaş</th>
+                            <th>Cinsiyet</th>
+                            <th>Email</th>
+                            <th>Seçenekler</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.CUSTOMERNAME</td>
+                                <td>@item.AGE</td>
+                                <td>@item.GENDER</td>
+                                <td>@item.EMAIL</td>
+
+                                <td>
+                                    <a class="btn btn-primary" role="button" href="/Home/KullaniciDuzenle/@item.ID">
+                                        Düzenle
+                                    </a>
+                                    <a class="btn btn-danger" role="button" href="/Home/KullaniciSil/@item.ID" onclick="return confirm('Silmek istediğinize emin misiniz?')">
+                                        Sil
+                                    </a>
+                                </td>
+                            </tr>
+
+                        }
+
+
+                    </tbody>
+
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+</div>
+
+<div class="modal fade" id="kullaniciEkleModal" tabindex="-1" role="dialog" aria-labelledby="kullaniciEkleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Kullanici Ekle</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm())
+                {
+                    <div class="form-group">
+                        <label for="CUSTOMERNAME">Ad Soyad</label>
+                        <input type="text" class="form-control" id="CUSTOMERNAME" name="CUSTOMERNAME" placeholder="Ad Soyad">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="AGE">Yaş</label>
+                        <input type="text" class="form-control" id="AGE" name="AGE" placeholder="Yaş">
+                    </div>
+
+                    <div class="form-group">
+                        <label>Cinsiyet</label>
+                        <div class="form-check">
+                            <input class="form-check-input" id="GENDER" name="GENDER" type="radio" value="Erkek">
+                            <label class="form-check-label" for="GENDER">Erkek</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" id="GENDER" name="GENDER" type="radio" value="Kadın">
+                            <label class="form-check-label" for="GENDER">Kadın</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="EMAIL">Email</label>
+                        <input type="text" class="form-control" id="EMAIL" name="EMAIL" placeholder="Email">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="PASSWORD">Şifre</label>
+                        <input type="password" class="form-control" id="PASSWORD" name="PASSWORD" placeholder="Şifre">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
